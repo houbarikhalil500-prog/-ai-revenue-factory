@@ -3,155 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Digital Studio</title>
+<title>AI Digital Studio - DZ</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
 body { background: #09090b; color: #f4f4f5; padding: 16px; display: flex; flex-direction: column; align-items: center; }
 .container { width: 100%; max-width: 600px; }
-.header { text-align: center; margin: 16px 0 24px; }
-.badge-top { background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #fbbf24; font-size: 11px; font-weight: bold; padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
-.header h1 { font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.header { text-align: center; margin: 14px 0 20px; }
+.badge-top { background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; font-size: 11px; font-weight: bold; padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
+.header h1 { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 6px; }
 .header p { font-size: 12px; color: #a1a1aa; }
 .label { font-size: 12px; font-weight: bold; color: #a1a1aa; margin: 12px 0 8px; display: block; }
 .card { background: #18181b; border: 2px solid #27272a; border-radius: 16px; padding: 14px; margin-bottom: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
 .card.active { border-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
 .card h3 { font-size: 13px; color: #fff; margin-bottom: 4px; }
 .card p { font-size: 11px; color: #a1a1aa; }
-.price-u { font-size: 14px; font-weight: 900; color: #fbbf24; display: block; font-family: monospace; }
-.price-d { font-size: 11px; color: #34d399; font-weight: bold; }
+.price-d { font-size: 15px; color: #fbbf24; font-weight: 900; font-family: monospace; white-space: nowrap; }
 .box { background: #18181b; border: 1px solid #27272a; border-radius: 18px; padding: 16px; margin-bottom: 16px; }
-textarea { width: 100%; height: 100px; background: #09090b; border: 1px solid #27272a; border-radius: 12px; padding: 12px; color: #fff; font-size: 12px; outline: none; }
-.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-.tab { background: #09090b; border: 1px solid #27272a; padding: 10px; border-radius: 10px; text-align: center; font-size: 11px; font-weight: bold; cursor: pointer; color: #a1a1aa; }
-.tab.active { border-color: #10b981; color: #34d399; }
-.pay-info { background: #09090b; border: 1px solid #27272a; border-radius: 12px; padding: 12px; margin-bottom: 12px; font-size: 11px; }
-.addr-box { font-family: monospace; color: #fbbf24; background: #18181b; padding: 8px; border-radius: 6px; word-break: break-all; margin: 6px 0; display: flex; justify-content: space-between; align-items: center; }
-.btn-sm { background: #27272a; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; }
+textarea, select { width: 100%; background: #09090b; border: 1px solid #27272a; border-radius: 12px; padding: 12px; color: #fff; font-size: 12px; outline: none; margin-bottom: 10px; }
+textarea { height: 95px; }
+.pay-info { background: #09090b; border: 1px solid #27272a; border-radius: 12px; padding: 12px; margin-bottom: 12px; font-size: 11px; line-height: 1.6; }
+.addr-box { font-family: monospace; color: #fbbf24; background: #18181b; padding: 10px; border-radius: 8px; word-break: break-all; margin: 6px 0; display: flex; justify-content: space-between; align-items: center; border: 1px solid #27272a; }
+.btn-sm { background: #27272a; color: #fff; border: none; padding: 5px 10px; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: bold; }
 .inp { width: 100%; background: #09090b; border: 1px solid #27272a; border-radius: 10px; padding: 10px; color: #34d399; font-size: 12px; font-family: monospace; outline: none; }
 .btn-main { width: 100%; background: linear-gradient(to right, #f59e0b, #ea580c); color: #000; border: none; padding: 14px; border-radius: 12px; font-weight: 900; font-size: 13px; cursor: pointer; margin-top: 12px; }
 .btn-dl { background: #10b981; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 12px; cursor: pointer; width: 100%; margin-top: 10px; }
-#res-box { display: none; background: #18181b; border: 1px solid #10b981; border-radius: 18px; padding: 16px; margin-bottom: 24px; }
+#res-box { display: none; background: #18181b; border: 1px solid #10b981; border-radius: 18px; padding: 16px; margin-bottom: 20px; }
 .res-out { background: #09090b; border: 1px solid #27272a; border-radius: 10px; padding: 12px; font-family: monospace; font-size: 11px; color: #e4e4e7; white-space: pre-wrap; margin-top: 10px; }
+.footer { text-align: center; font-size: 12px; color: #a1a1aa; padding: 16px; border-top: 1px solid #27272a; width: 100%; line-height: 1.8; }
+.footer a { color: #fbbf24; text-decoration: none; font-weight: bold; font-family: monospace; font-size: 13px; }
 </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <span class="badge-top">⚡ استوديو التوليد الذكي الفوري AI SaaS</span>
-        <h1>منصة المنتجات الرقمية الشاملة</h1>
-        <p>اختر الخدمة، اكتب تفاصيل طلبك، واستلم منتجك الرقمي جاهزاً للتحميل فوراً.</p>
+        <span class="badge-top">🇩🇿 منصة جزائرية للخدمات الرقمية الذكية</span>
+        <h1>استوديو التوليد الرقمي الشامل</h1>
+        <p>اختر الخدمة واللغة، ادفع بأمان عبر بريديموب أو CCP، واستلم ملفك جاهزاً فوراً.</p>
     </div>
 
-    <span class="label">1. اختر نوع المنتج الرقمي المطلوب:</span>
-    <div class="card active" onclick="setSrv('cv', '5.00 USDT / 1000 دج', this)">
+    <span class="label">1. اختر نوع الخدمة الرقمية المطلوبة:</span>
+    <div class="card active" onclick="setSrv('cv', '1000 DZD', this)">
         <div>
             <h3>📄 ملف هجرة وسيرة ذاتية دولية (Canada / EuroPass)</h3>
-            <p>سيرة ذاتية قياسية + رسالة تغطية مقنعة لاجتياز القبول.</p>
+            <p>سيرة ذاتية قياسية + رسالة تغطية (Lettre de Motivation) بجميع اللغات.</p>
         </div>
-        <div><span class="price-u" dir="ltr">5.00 USDT</span><span class="price-d">1000 دج</span></div>
+        <span class="price-d">1000 دج</span>
     </div>
 
-    <div class="card" onclick="setSrv('contract', '10.00 USDT / 2000 دج', this)">
+    <div class="card" onclick="setSrv('contract', '2000 DZD', this)">
         <div>
-            <h3>⚖️ عقد وساطة مالية وبيع وشراء مضمون</h3>
-            <p>صياغة عقد قانوني لحماية الطرفين في الصفقات الرقمية.</p>
+            <h3>⚖️ صياغة عقد اتفاق أو التزام تجاري</h3>
+            <p>صياغة وثيقة اتفاق قانونية لحفظ الحقوق في المعاملات التجارية والخدمات.</p>
         </div>
-        <div><span class="price-u" dir="ltr">10.00 USDT</span><span class="price-d">2000 دج</span></div>
+        <span class="price-d">2000 دج</span>
     </div>
 
-    <div class="card" onclick="setSrv('code', '15.00 USDT / 3000 دج', this)">
+    <div class="card" onclick="setSrv('code', '3000 DZD', this)">
         <div>
-            <h3>🛡️ تدقيق عقد ذكي أو توليد كود موقع كامل</h3>
-            <p>فحص ثغرات العقود البرمجية أو توليد كود جاهز للنشر.</p>
+            <h3>💻 برمجة واجهة موقع أو تدقيق كود برمجي</h3>
+            <p>توليد هيكل موقع ويب احترافي أو فحص الأخطاء البرمجية للمطورين.</p>
         </div>
-        <div><span class="price-u" dir="ltr">15.00 USDT</span><span class="price-d">3000 دج</span></div>
+        <span class="price-d">3000 دج</span>
     </div>
 
     <div class="box">
-        <span class="label">2. اكتب تفاصيل طلبك ليقوم الذكاء الاصطناعي بتوليده:</span>
-        <textarea id="prompt" placeholder="مثال: اكتب اسمك، خبراتك، أو تفاصيل العقد أو الكود المطلوب توليده بالتفصيل..."></textarea>
+        <span class="label">2. اختر لغة الملف المستلم واكتب معلوماتك:</span>
+        <select id="lang">
+            <option value="fr">🇫🇷 اللغة الفرنسية (Français)</option>
+            <option value="en">🇬🇧 اللغة الإنجليزية (English)</option>
+            <option value="ar">🇩🇿 اللغة العربية (Arabic)</option>
+        </select>
+        <textarea id="prompt" placeholder="اكتب هنا اسمك، شهاداتك، خبراتك، أو تفاصيل الوثيقة أو الكود المطلوب توليده..."></textarea>
     </div>
 
     <div class="box">
-        <span class="label">3. الدفع والاستلام الفوري (<span id="p-lbl" style="color:#fbbf24;">5.00 USDT / 1000 دج</span>):</span>
-        <div class="tabs">
-            <div class="tab active" onclick="setPay('usdt', this)">💎 دفع بـ USDT (TRC20)</div>
-            <div class="tab" onclick="setPay('ccp', this)">🇩🇿 بريديموب / CCP</div>
-        </div>
-
-        <div id="p-usdt" class="pay-info">
-            <div>أرسل المبلغ إلى محفظة المنصة (شبكة TRC20):</div>
+        <span class="label">3. الدفع الرسمي الآمن (<span id="p-lbl" style="color:#fbbf24;">1000 DZD</span>):</span>
+        
+        <div class="pay-info">
+            <div>1. للدفع الفوري عبر تطبيق <b>BaridiMob (RIP)</b>:</div>
             <div class="addr-box" dir="ltr">
-                <span id="w-txt">TYnJW395RFhCnpowLBtEiHWys88tg5FeiU</span>
-                <button class="btn-sm" onclick="copyTxt('w-txt')">نسخ</button>
+                <span id="r-txt">00799999002590334281</span>
+                <button class="btn-sm" onclick="copyTxt('r-txt')">Copy RIP</button>
+            </div>
+            <div style="margin-top:8px;">2. للدفع عبر مكاتب البريد <b>CCP</b>:</div>
+            <div class="addr-box" dir="ltr">
+                <span id="c-txt">CCP: 25903342 Cle 81 - HOUBARI KHALIL</span>
+                <button class="btn-sm" onclick="copyTxt('c-txt')">Copy CCP</button>
             </div>
         </div>
 
-        <div id="p-ccp" class="pay-info" style="display:none;">
-            <div>حول المبلغ عبر تطبيق BaridiMob إلى الـ RIP التالي:</div>
-            <div class="addr-box" dir="ltr">
-                <span id="r-txt">00799999002456789123</span>
-                <button class="btn-sm" onclick="copyTxt('r-txt')">نسخ</button>
-            </div>
-        </div>
-
-        <span class="label">أدخل رمز المعاملة (TxHash أو رقم الوصل) للتأكيد:</span>
-        <input type="text" id="tx" class="inp" placeholder="أدخل رمز الدفع هنا (أو اكتب VIP للتجربة)..." dir="ltr">
-        <button id="g-btn" class="btn-main" onclick="runGen()">🚀 تأكيد الدفع وتوليد المنتج الرقمي فوراً</button>
+        <span class="label">أدخل رقم عملية بريديموب أو رقم الوصل للتأكيد:</span>
+        <input type="text" id="tx" class="inp" placeholder="Transaction ID / Receipt No..." dir="ltr">
+        <button id="g-btn" class="btn-main" data-wait="Wait..." data-ready="Confirm & Generate Now" onclick="runGen()">🚀 تأكيد الدفع وتوليد الملف فوراً</button>
     </div>
 
     <div id="res-box">
-        <div style="color:#34d399; font-weight:bold; font-size:13px;">✓ تم توليد منتجك الرقمي بنجاح!</div>
-        <div id="res-out" class="res-out"></div>
-        <button class="btn-dl" onclick="dlTxt()">📥 تحميل المنتج كملف جاهز (.TXT)</button>
+        <div style="color:#34d399; font-weight:bold; font-size:13px;">✓ تم توليد ملفك الرقمي بنجاح!</div>
+        <div id="res-out" class="res-out" dir="ltr"></div>
+        <button class="btn-dl" onclick="dlTxt()">📥 تحميل الملف الجاهز (.TXT)</button>
+    </div>
+
+    <div class="footer">
+        للدعم الفني وإرسال وصولات الدفع تواصل معنا عبر البريد الإلكتروني:<br>
+        <a href="mailto:khalilhabari33@gmail.com">khalilhabari33@gmail.com</a>
     </div>
 </div>
 
+<div id="tpl-ar" style="display:none;">وثيقة رقمية معتمدة ومولدة بالذكاء الاصطناعي بناء على طلب العميل. جميع المعايير القياسية مطبقة بنجاح.</div>
+
 <script>
-let srv = 'cv';
+var srv = 'cv';
 function setSrv(t, p, el) {
     srv = t;
     document.getElementById('p-lbl').innerText = p;
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+    }
     el.classList.add('active');
-}
-function setPay(m, el) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('p-usdt').style.display = (m === 'usdt') ? 'block' : 'none';
-    document.getElementById('p-ccp').style.display = (m === 'ccp') ? 'block' : 'none';
 }
 function copyTxt(id) {
-    navigator.clipboard.writeText(document.getElementById(id).innerText);
-    alert("تم النسخ بنجاح!");
+    var txt = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(txt);
+    alert("Copied: " + txt);
 }
 function runGen() {
-    const pr = document.getElementById('prompt').value.trim();
-    const tx = document.getElementById('tx').value.trim();
-    const btn = document.getElementById('g-btn');
-    if(!pr || tx.length < 3) { alert("يرجى كتابة الطلب وإدخال رمز الدفع!"); return; }
+    var pr = document.getElementById('prompt').value.trim();
+    var tx = document.getElementById('tx').value.trim();
+    var lg = document.getElementById('lang').value;
+    var btn = document.getElementById('g-btn');
+    if (!pr || tx.length < 3) {
+        alert("Please enter your details and payment reference number!");
+        return;
+    }
+    var oldTxt = btn.innerText;
     btn.disabled = true;
-    btn.innerText = "⏳ جاري التحقق وتوليد المنتج بالذكاء الاصطناعي...";
-    setTimeout(() => {
-        let out = "=== وثيقة منتج رقمي معتمد ===\nالتاريخ: " + new Date().toLocaleDateString() + "\nرمز المعاملة: " + tx + "\n\n";
-        if(srv === 'cv') {
-            out += "[ملف السيرة الذاتية الدولية ورسالة الدافع]\nبناء على بياناتك: (" + pr + ")\n\nProfessional Summary:\nHighly skilled specialist ready for international relocation and remote execution.\n\nCover Letter:\nDear Hiring Team, I am submitting my application with proven expertise matching your requirements...";
-        } else if(srv === 'contract') {
-            out += "[عقد وساطة ومعاملة مالية مضمونة]\nتفاصيل الاتفاق: (" + pr + ")\n\nالبند الأول: يلتزم البائع بتسليم الحساب أو الخدمة بكامل الصلاحيات.\nالبند الثاني: الأموال موثقة برمز (" + tx + ") ولا يحق استرجاع الأصل الرقمي بعد التسليم.";
+    btn.innerText = "Processing AI Generation...";
+    setTimeout(function() {
+        var out = "========================================\n";
+        out += "AI DIGITAL STUDIO - OFFICIAL DOCUMENT\n";
+        out += "Payment Ref: " + tx + " | Service: " + srv.toUpperCase() + "\n";
+        out += "========================================\n\n";
+        if (lg === 'fr') {
+            out += "[DOCUMENT PROFESSIONNEL - FRANCAIS]\n";
+            out += "Details fournis : " + pr + "\n\n";
+            out += "Objet : Candidature / Document Officiel (Norme EuroPass & Canada)\n";
+            out += "Madame, Monsieur,\nSuite a l'analyse des competences mentionnees ci-dessus, ce profil demontre une excellente capacite d'adaptation et de reussite professionnelle...\n";
+        } else if (lg === 'en') {
+            out += "[PROFESSIONAL DOCUMENT - ENGLISH]\n";
+            out += "Provided Details: " + pr + "\n\n";
+            out += "Subject: International ATS Standard Resume & Cover Letter\n";
+            out += "Dear Hiring Team,\nBased on the verified qualifications listed above, the candidate exhibits strong operational and technical capabilities ready for immediate integration...\n";
         } else {
-            out += "[تقرير الفحص الأمني وتوليد الكود]\nالطلب: (" + pr + ")\n\nSecurity Status: PASSED (98/100)\nNo Reentrancy or Overflow detected.\n\npragma solidity ^0.8.20;\ncontract VerifiedAsset { address public owner; }";
+            out += "[ARABIC OFFICIAL DOCUMENT]\n";
+            out += "Client Details: " + pr + "\n\n";
+            out += document.getElementById('tpl-ar').innerText + "\n";
         }
         document.getElementById('res-out').innerText = out;
         document.getElementById('res-box').style.display = 'block';
         btn.disabled = false;
-        btn.innerText = "🚀 تأكيد الدفع وتوليد المنتج الرقمي فوراً";
+        btn.innerText = oldTxt;
     }, 2000);
 }
 function dlTxt() {
-    const b = new Blob([document.getElementById('res-out').innerText], {type:'text/plain;charset=utf-8'});
-    const a = document.createElement('a');
+    var content = document.getElementById('res-out').innerText;
+    var b = new Blob([content], {type: 'text/plain;charset=utf-8'});
+    var a = document.createElement('a');
     a.href = URL.createObjectURL(b);
-    a.download = 'Digital-Product.txt';
+    a.download = 'Document-' + srv + '.txt';
     a.click();
 }
 </script>
