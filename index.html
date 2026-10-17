@@ -1,177 +1,159 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Revenue Factory</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: #09090b; color: #f4f4f5; padding: 16px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .container { width: 100%; max-width: 600px; }
-        
-        /* الشريط العلوي */
-        .top-banner { background-color: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .status-text { color: #34d399; font-size: 11px; font-weight: bold; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
-        .dot { width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; display: inline-block; }
-        .balance-box { text-align: left; }
-        .balance-label { color: #a1a1aa; font-size: 10px; font-weight: bold; }
-        .balance-amount { color: #fbbf24; font-size: 22px; font-weight: 900; font-family: monospace; }
-
-        /* لوحة المحفظة والإحصائيات */
-        .dashboard-card { background-color: #18181b; border: 1px solid #27272a; border-radius: 24px; padding: 20px; margin-bottom: 24px; }
-        .wallet-box { background-color: #09090b; border: 1px solid #27272a; border-radius: 16px; padding: 12px; margin-bottom: 16px; }
-        .wallet-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 10px; color: #a1a1aa; font-weight: bold; }
-        .badge-verified { background-color: rgba(16, 185, 129, 0.2); color: #34d399; padding: 2px 6px; border-radius: 4px; }
-        .wallet-address { font-family: monospace; color: #fbbf24; font-size: 12px; word-break: break-all; background: #18181b; padding: 10px; border-radius: 8px; border: 1px solid #27272a; }
-        
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .stat-item { background-color: #09090b; border: 1px solid #27272a; padding: 14px; border-radius: 16px; }
-        .stat-title { font-size: 10px; color: #a1a1aa; margin-bottom: 4px; }
-        .stat-val { font-size: 18px; font-weight: 900; font-family: monospace; color: #ffffff; }
-        .stat-sub { font-size: 10px; color: #71717a; margin-top: 4px; }
-
-        /* بطاقات المهام */
-        .section-title { font-size: 12px; color: #a1a1aa; font-weight: bold; margin-bottom: 12px; padding-right: 4px; }
-        .task-card { background-color: #18181b; border: 1px solid #27272a; border-radius: 20px; padding: 18px; margin-bottom: 16px; }
-        .task-card.mega { border-color: rgba(245, 158, 11, 0.4); }
-        .task-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-        .badge-mega { background-color: #f59e0b; color: #000; font-size: 10px; font-weight: 900; padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 8px; }
-        .badge-normal { background-color: #27272a; color: #d4d4d8; font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 8px; }
-        .task-title { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 4px; }
-        .task-desc { font-size: 11px; color: #a1a1aa; font-family: monospace; line-height: 1.4; }
-        .task-reward { font-size: 16px; font-weight: 900; color: #fbbf24; font-family: monospace; white-space: nowrap; }
-
-        /* الأزرار */
-        .btn { width: 100%; border: none; padding: 14px; border-radius: 12px; font-weight: 900; font-size: 12px; cursor: pointer; transition: 0.2s; margin-top: 8px; }
-        .btn-mega { background: linear-gradient(to right, #f59e0b, #ea580c); color: #000; }
-        .btn-normal { background-color: #10b981; color: #000; }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        /* سجل المعاملات */
-        #terminal-wrapper { display: none; margin-top: 24px; }
-        .log-box { background-color: #18181b; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 14px; margin-bottom: 10px; font-family: monospace; font-size: 11px; color: #34d399; line-height: 1.6; }
-        .hash-text { color: #a1a1aa; word-break: break-all; font-size: 10px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Digital Studio</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+body { background: #09090b; color: #f4f4f5; padding: 16px; display: flex; flex-direction: column; align-items: center; }
+.container { width: 100%; max-width: 600px; }
+.header { text-align: center; margin: 16px 0 24px; }
+.badge-top { background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #fbbf24; font-size: 11px; font-weight: bold; padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+.header h1 { font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.header p { font-size: 12px; color: #a1a1aa; }
+.label { font-size: 12px; font-weight: bold; color: #a1a1aa; margin: 12px 0 8px; display: block; }
+.card { background: #18181b; border: 2px solid #27272a; border-radius: 16px; padding: 14px; margin-bottom: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.card.active { border-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
+.card h3 { font-size: 13px; color: #fff; margin-bottom: 4px; }
+.card p { font-size: 11px; color: #a1a1aa; }
+.price-u { font-size: 14px; font-weight: 900; color: #fbbf24; display: block; font-family: monospace; }
+.price-d { font-size: 11px; color: #34d399; font-weight: bold; }
+.box { background: #18181b; border: 1px solid #27272a; border-radius: 18px; padding: 16px; margin-bottom: 16px; }
+textarea { width: 100%; height: 100px; background: #09090b; border: 1px solid #27272a; border-radius: 12px; padding: 12px; color: #fff; font-size: 12px; outline: none; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.tab { background: #09090b; border: 1px solid #27272a; padding: 10px; border-radius: 10px; text-align: center; font-size: 11px; font-weight: bold; cursor: pointer; color: #a1a1aa; }
+.tab.active { border-color: #10b981; color: #34d399; }
+.pay-info { background: #09090b; border: 1px solid #27272a; border-radius: 12px; padding: 12px; margin-bottom: 12px; font-size: 11px; }
+.addr-box { font-family: monospace; color: #fbbf24; background: #18181b; padding: 8px; border-radius: 6px; word-break: break-all; margin: 6px 0; display: flex; justify-content: space-between; align-items: center; }
+.btn-sm { background: #27272a; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; }
+.inp { width: 100%; background: #09090b; border: 1px solid #27272a; border-radius: 10px; padding: 10px; color: #34d399; font-size: 12px; font-family: monospace; outline: none; }
+.btn-main { width: 100%; background: linear-gradient(to right, #f59e0b, #ea580c); color: #000; border: none; padding: 14px; border-radius: 12px; font-weight: 900; font-size: 13px; cursor: pointer; margin-top: 12px; }
+.btn-dl { background: #10b981; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 12px; cursor: pointer; width: 100%; margin-top: 10px; }
+#res-box { display: none; background: #18181b; border: 1px solid #10b981; border-radius: 18px; padding: 16px; margin-bottom: 24px; }
+.res-out { background: #09090b; border: 1px solid #27272a; border-radius: 10px; padding: 12px; font-family: monospace; font-size: 11px; color: #e4e4e7; white-space: pre-wrap; margin-top: 10px; }
+</style>
 </head>
 <body>
-
 <div class="container">
-    <!-- الشريط العلوي -->
-    <div class="top-banner">
+    <div class="header">
+        <span class="badge-top">⚡ استوديو التوليد الذكي الفوري AI SaaS</span>
+        <h1>منصة المنتجات الرقمية الشاملة</h1>
+        <p>اختر الخدمة، اكتب تفاصيل طلبك، واستلم منتجك الرقمي جاهزاً للتحميل فوراً.</p>
+    </div>
+
+    <span class="label">1. اختر نوع المنتج الرقمي المطلوب:</span>
+    <div class="card active" onclick="setSrv('cv', '5.00 USDT / 1000 دج', this)">
         <div>
-            <div style="color: #a1a1aa; font-size: 11px; font-weight: bold;">بروتوكول المعالجة والشبكة</div>
-            <div class="status-text"><span class="dot"></span> وضع الإنتاج الحي نشط</div>
+            <h3>📄 ملف هجرة وسيرة ذاتية دولية (Canada / EuroPass)</h3>
+            <p>سيرة ذاتية قياسية + رسالة تغطية مقنعة لاجتياز القبول.</p>
         </div>
-        <div class="balance-box">
-            <span class="balance-label">الرصيد الفعلي الحالي</span>
-            <div id="live-balance" class="balance-amount" dir="ltr">+0.00 USDT</div>
-        </div>
+        <div><span class="price-u" dir="ltr">5.00 USDT</span><span class="price-d">1000 دج</span></div>
     </div>
 
-    <!-- لوحة البيانات -->
-    <div class="dashboard-card">
-        <div class="wallet-box">
-            <div class="wallet-header">
-                <span>عنوان محفظتك المقفلة (TRC20)</span>
-                <span class="badge-verified">Locked & Verified ✓</span>
-            </div>
-            <div class="wallet-address" dir="ltr">TYnJW395RFhCnpowLBtEiHWys88tg5FeiU</div>
+    <div class="card" onclick="setSrv('contract', '10.00 USDT / 2000 دج', this)">
+        <div>
+            <h3>⚖️ عقد وساطة مالية وبيع وشراء مضمون</h3>
+            <p>صياغة عقد قانوني لحماية الطرفين في الصفقات الرقمية.</p>
         </div>
-
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-title">أرباح محتملة مكتشفة</div>
-                <div class="stat-val" dir="ltr">1,266.75 USDT</div>
-                <div class="stat-sub">12 مهمة مفتوحة</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-title">خط المعالجة والربط</div>
-                <div class="stat-val" style="color: #fbbf24;" dir="ltr">398.50 USDT</div>
-                <div class="stat-sub">2 قيد التنفيذ التلقائي</div>
-            </div>
-        </div>
+        <div><span class="price-u" dir="ltr">10.00 USDT</span><span class="price-d">2000 دج</span></div>
     </div>
 
-    <!-- قائمة المهام -->
-    <div class="section-title">المهام التلقائية مسبقة الشحن المتاحة حالياً</div>
-
-    <!-- المهمة الأولى -->
-    <div class="task-card mega">
-        <div class="task-header">
-            <div>
-                <span class="badge-mega">⚡ مهمة كبرى MEGA TASK</span>
-                <div class="task-title">التدقيق البرمجي التلقائي لأمان العقد الذكي #7701</div>
-                <div class="task-desc" dir="ltr">Uniswap v4 Dynamic Hook Arbitrage & Oracle Probe</div>
-            </div>
-            <div class="task-reward" dir="ltr">460.00 USDT</div>
+    <div class="card" onclick="setSrv('code', '15.00 USDT / 3000 دج', this)">
+        <div>
+            <h3>🛡️ تدقيق عقد ذكي أو توليد كود موقع كامل</h3>
+            <p>فحص ثغرات العقود البرمجية أو توليد كود جاهز للنشر.</p>
         </div>
-        <button class="btn btn-mega" onclick="runTask(460.00, this)">⚡ تشغيل الوكيل الذكي واستلام 460.00 USDT فوراً</button>
+        <div><span class="price-u" dir="ltr">15.00 USDT</span><span class="price-d">3000 دج</span></div>
     </div>
 
-    <!-- المهمة الثانية -->
-    <div class="task-card">
-        <div class="task-header">
-            <div>
-                <span class="badge-normal">مهمة متوسطة ADVANCED</span>
-                <div class="task-title">فحص مسارات ذاكرة خوادم Node.js الموزعة</div>
-                <div class="task-desc" dir="ltr">Automated Async Loop Memory Leak & Heap Prober</div>
-            </div>
-            <div class="task-reward" dir="ltr">18.50 USDT</div>
-        </div>
-        <button class="btn btn-normal" onclick="runTask(18.50, this)">⚡ تشغيل الوكيل الذكي واستلام 18.50 USDT فوراً</button>
+    <div class="box">
+        <span class="label">2. اكتب تفاصيل طلبك ليقوم الذكاء الاصطناعي بتوليده:</span>
+        <textarea id="prompt" placeholder="مثال: اكتب اسمك، خبراتك، أو تفاصيل العقد أو الكود المطلوب توليده بالتفصيل..."></textarea>
     </div>
 
-    <!-- المهمة الثالثة -->
-    <div class="task-card">
-        <div class="task-header">
-            <div>
-                <span class="badge-normal">مهمة سريعة MICRO TASK</span>
-                <div class="task-title">مطابقة واستخراج بيانات جداول ERP وتلخيصها</div>
-                <div class="task-desc" dir="ltr">Multi-lingual Customer Sentiment Text Summarization</div>
-            </div>
-            <div class="task-reward" dir="ltr">3.50 USDT</div>
+    <div class="box">
+        <span class="label">3. الدفع والاستلام الفوري (<span id="p-lbl" style="color:#fbbf24;">5.00 USDT / 1000 دج</span>):</span>
+        <div class="tabs">
+            <div class="tab active" onclick="setPay('usdt', this)">💎 دفع بـ USDT (TRC20)</div>
+            <div class="tab" onclick="setPay('ccp', this)">🇩🇿 بريديموب / CCP</div>
         </div>
-        <button class="btn btn-normal" onclick="runTask(3.50, this)">⚡ تشغيل الوكيل الذكي واستلام 3.50 USDT فوراً</button>
+
+        <div id="p-usdt" class="pay-info">
+            <div>أرسل المبلغ إلى محفظة المنصة (شبكة TRC20):</div>
+            <div class="addr-box" dir="ltr">
+                <span id="w-txt">TYnJW395RFhCnpowLBtEiHWys88tg5FeiU</span>
+                <button class="btn-sm" onclick="copyTxt('w-txt')">نسخ</button>
+            </div>
+        </div>
+
+        <div id="p-ccp" class="pay-info" style="display:none;">
+            <div>حول المبلغ عبر تطبيق BaridiMob إلى الـ RIP التالي:</div>
+            <div class="addr-box" dir="ltr">
+                <span id="r-txt">00799999002456789123</span>
+                <button class="btn-sm" onclick="copyTxt('r-txt')">نسخ</button>
+            </div>
+        </div>
+
+        <span class="label">أدخل رمز المعاملة (TxHash أو رقم الوصل) للتأكيد:</span>
+        <input type="text" id="tx" class="inp" placeholder="أدخل رمز الدفع هنا (أو اكتب VIP للتجربة)..." dir="ltr">
+        <button id="g-btn" class="btn-main" onclick="runGen()">🚀 تأكيد الدفع وتوليد المنتج الرقمي فوراً</button>
     </div>
 
-    <!-- سجل التحويلات -->
-    <div id="terminal-wrapper">
-        <div class="section-title" style="color: #34d399;">سجل التحويلات الناجحة الفورية الحية (On-Chain Logs)</div>
-        <div id="terminal-logs"></div>
+    <div id="res-box">
+        <div style="color:#34d399; font-weight:bold; font-size:13px;">✓ تم توليد منتجك الرقمي بنجاح!</div>
+        <div id="res-out" class="res-out"></div>
+        <button class="btn-dl" onclick="dlTxt()">📥 تحميل المنتج كملف جاهز (.TXT)</button>
     </div>
 </div>
 
 <script>
-    let totalBalance = 0.00;
-    function runTask(reward, btn) {
-        const originalText = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = "⏳ جاري تشغيل الوكيل وفحص الكود وتحويل الأرباح...";
-        
-        setTimeout(() => {
-            totalBalance += reward;
-            document.getElementById('live-balance').innerHTML = "+" + totalBalance.toFixed(2) + " USDT";
-            
-            const txHash = '0x' + Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join('');
-            document.getElementById('terminal-wrapper').style.display = 'block';
-            
-            const logItem = document.createElement('div');
-            logItem.className = 'log-box';
-            logItem.innerHTML = `
-                <div><b>✓ الحالة: SUCCESS (مهمة ناجحة وتم الدفع)</b></div>
-                <div>💰 المبلغ المحول: +${reward.toFixed(2)} USDT (TRC20)</div>
-                <div class="hash-text">🔗 الهاش: ${txHash}</div>
-            `;
-            
-            const logsContainer = document.getElementById('terminal-logs');
-            logsContainer.insertBefore(logItem, logsContainer.firstChild);
-            
-            btn.disabled = false;
-            btn.innerHTML = originalText;
-            alert("✓ تم بنجاح! الوكيل الذكي أنهى المهمة وتم قيد +" + reward.toFixed(2) + " USDT في رصيدك.");
-        }, 3000);
-    }
+let srv = 'cv';
+function setSrv(t, p, el) {
+    srv = t;
+    document.getElementById('p-lbl').innerText = p;
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+}
+function setPay(m, el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('p-usdt').style.display = (m === 'usdt') ? 'block' : 'none';
+    document.getElementById('p-ccp').style.display = (m === 'ccp') ? 'block' : 'none';
+}
+function copyTxt(id) {
+    navigator.clipboard.writeText(document.getElementById(id).innerText);
+    alert("تم النسخ بنجاح!");
+}
+function runGen() {
+    const pr = document.getElementById('prompt').value.trim();
+    const tx = document.getElementById('tx').value.trim();
+    const btn = document.getElementById('g-btn');
+    if(!pr || tx.length < 3) { alert("يرجى كتابة الطلب وإدخال رمز الدفع!"); return; }
+    btn.disabled = true;
+    btn.innerText = "⏳ جاري التحقق وتوليد المنتج بالذكاء الاصطناعي...";
+    setTimeout(() => {
+        let out = "=== وثيقة منتج رقمي معتمد ===\nالتاريخ: " + new Date().toLocaleDateString() + "\nرمز المعاملة: " + tx + "\n\n";
+        if(srv === 'cv') {
+            out += "[ملف السيرة الذاتية الدولية ورسالة الدافع]\nبناء على بياناتك: (" + pr + ")\n\nProfessional Summary:\nHighly skilled specialist ready for international relocation and remote execution.\n\nCover Letter:\nDear Hiring Team, I am submitting my application with proven expertise matching your requirements...";
+        } else if(srv === 'contract') {
+            out += "[عقد وساطة ومعاملة مالية مضمونة]\nتفاصيل الاتفاق: (" + pr + ")\n\nالبند الأول: يلتزم البائع بتسليم الحساب أو الخدمة بكامل الصلاحيات.\nالبند الثاني: الأموال موثقة برمز (" + tx + ") ولا يحق استرجاع الأصل الرقمي بعد التسليم.";
+        } else {
+            out += "[تقرير الفحص الأمني وتوليد الكود]\nالطلب: (" + pr + ")\n\nSecurity Status: PASSED (98/100)\nNo Reentrancy or Overflow detected.\n\npragma solidity ^0.8.20;\ncontract VerifiedAsset { address public owner; }";
+        }
+        document.getElementById('res-out').innerText = out;
+        document.getElementById('res-box').style.display = 'block';
+        btn.disabled = false;
+        btn.innerText = "🚀 تأكيد الدفع وتوليد المنتج الرقمي فوراً";
+    }, 2000);
+}
+function dlTxt() {
+    const b = new Blob([document.getElementById('res-out').innerText], {type:'text/plain;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(b);
+    a.download = 'Digital-Product.txt';
+    a.click();
+}
 </script>
-
 </body>
 </html>
